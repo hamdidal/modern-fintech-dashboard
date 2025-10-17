@@ -48,6 +48,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:7.18.0"],\
           ["@vitejs/plugin-react", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:4.7.0"],\
           ["axios", "npm:1.12.2"],\
+          ["currency.js", "npm:2.0.4"],\
           ["eslint", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:9.37.0"],\
           ["eslint-plugin-react-hooks", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:5.2.0"],\
           ["eslint-plugin-react-refresh", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:0.4.23"],\
@@ -4548,6 +4549,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["currency.js", [\
+      ["npm:2.0.4", {\
+        "packageLocation": "../.yarn/berry/cache/currency.js-npm-2.0.4-3487455017-10c0.zip/node_modules/currency.js/",\
+        "packageDependencies": [\
+          ["currency.js", "npm:2.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["d3-array", [\
       ["npm:3.2.4", {\
         "packageLocation": "../.yarn/berry/cache/d3-array-npm-3.2.4-b427632bcc-10c0.zip/node_modules/d3-array/",\
@@ -6988,6 +6998,7 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/parser", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:7.18.0"],\
           ["@vitejs/plugin-react", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:4.7.0"],\
           ["axios", "npm:1.12.2"],\
+          ["currency.js", "npm:2.0.4"],\
           ["eslint", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:9.37.0"],\
           ["eslint-plugin-react-hooks", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:5.2.0"],\
           ["eslint-plugin-react-refresh", "virtual:1c6de4a5bb5121f8f7a3638d29e983d5ee8f08cf21319fc917446ae450ea1ff73fcbfe600d4dd39029e37054798664d551c1f5075b96624b00da34a770451a47#npm:0.4.23"],\

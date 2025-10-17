@@ -20,6 +20,7 @@ export const STORAGE_KEYS = {
   AUTH_TOKEN: 'maglo-auth',
   THEME: 'maglo-theme',
   LOCALE: 'maglo-locale',
+  CURRENCY: 'maglo-currency',
 } as const
 
 export const QUERY_KEYS = {
@@ -29,6 +30,7 @@ export const QUERY_KEYS = {
   RECENT_TRANSACTIONS: 'recentTransactions',
   SCHEDULED_TRANSFERS: 'scheduledTransfers',
   USER_PROFILE: 'userProfile',
+  EXCHANGE_RATES: 'exchangeRates',
 } as const
 
 export const BREAKPOINTS = {

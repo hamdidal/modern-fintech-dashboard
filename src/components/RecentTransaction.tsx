@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { formatCurrency, formatDate } from "@utils/format";
+import { formatDate } from "@utils/format";
+import { useCurrency } from "@hooks/useCurrency";
 import type { RecentTransactions } from "@api/finance";
 
 export default function RecentTransaction({ recentTransactions }: { recentTransactions: RecentTransactions }) {
   const { t } = useTranslation();
+  const { convertAndFormat } = useCurrency();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const displayedTransactions = recentTransactions.transactions.slice(0, 3);
@@ -69,7 +71,7 @@ export default function RecentTransaction({ recentTransactions }: { recentTransa
                   </td>
                   <td className="recent-transaction__type">{transaction.type}</td>
                   <td className="recent-transaction__amount">
-                    {formatCurrency(transaction.amount, transaction.currency)}
+                    {convertAndFormat(transaction.amount, transaction.currency)}
                   </td>
                   <td className="recent-transaction__date">{formatDate(transaction.date)}</td>
                 </tr>
@@ -120,7 +122,7 @@ export default function RecentTransaction({ recentTransactions }: { recentTransa
                       </td>
                       <td className="recent-transaction__type">{transaction.type}</td>
                       <td className="recent-transaction__amount">
-                        {formatCurrency(transaction.amount, transaction.currency)}
+                        {convertAndFormat(transaction.amount, transaction.currency)}
                       </td>
                       <td className="recent-transaction__date">{formatDate(transaction.date)}</td>
                     </tr>

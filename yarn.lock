@@ -3194,6 +3194,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"currency.js@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "currency.js@npm:2.0.4"
+  checksum: 10c0/e7cd308a97c7b5d3413fa304542da62b7205a28144889b9b38f0fd203fe4d3c499a9541303fcbb6a9fac33a7ee39ab02d810c2c8f37cd5c69a7991adef638ba3
+  languageName: node
+  linkType: hard
+
 "d3-array@npm:2 - 3, d3-array@npm:2.10.0 - 3, d3-array@npm:^3.1.6":
   version: 3.2.4
   resolution: "d3-array@npm:3.2.4"
@@ -5298,6 +5305,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^7.16.0"
     "@vitejs/plugin-react": "npm:^4.3.1"
     axios: "npm:^1.7.4"
+    currency.js: "npm:^2.0.4"
     eslint: "npm:^9.9.0"
     eslint-plugin-react-hooks: "npm:^5.1.0"
     eslint-plugin-react-refresh: "npm:^0.4.7"

@@ -35,5 +35,12 @@ export type {
   FormMode,
   ThemeMode,
   Locale,
+  Currency,
 } from './common.types'
+
+export type {
+  ExchangeRateResponse,
+  ExchangeRates,
+  ConversionParams,
+} from './exchange.types'
 

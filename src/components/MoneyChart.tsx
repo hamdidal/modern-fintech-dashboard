@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import type { BarProps, TooltipProps } from "recharts";
 import type { WorkingCapital } from "@api/finance";
-import { formatCurrency } from "@utils/format";
+import { useCurrency } from "@hooks/useCurrency";
 import { useTranslation } from "react-i18next";
 import type { ActiveShape } from "recharts/types/util/types";
 
@@ -24,6 +24,8 @@ const CustomTooltip = ({
   currency: string;
   hoveredLine: string | null;
 }) => {
+  const { convertAndFormat } = useCurrency();
+  
   if (active && payload && payload.length) {
     if (hoveredLine) {
       const data = payload.find((p) => p.dataKey === hoveredLine);
@@ -31,7 +33,7 @@ const CustomTooltip = ({
         return (
           <div className="money-chart__tooltip">
             <p className="money-chart__tooltip-value">
-              {formatCurrency(data.value ?? 0, currency)}
+              {convertAndFormat(data.value ?? 0, currency)}
             </p>
           </div>
         );

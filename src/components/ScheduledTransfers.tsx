@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { type ScheduledTransfers } from "@api/finance";
 import { useTranslation } from "react-i18next";
-import { formatCurrency, formatDate } from "@utils/format";
+import { formatDate } from "@utils/format";
+import { useCurrency } from "@hooks/useCurrency";
 import { getAvatarForTransfer } from "@utils/avatars";
 
 export default function ScheduledTransfers({
@@ -10,6 +11,7 @@ export default function ScheduledTransfers({
   scheduledTransfers: ScheduledTransfers | undefined;
 }) {
   const { t } = useTranslation();
+  const { convertAndFormat } = useCurrency();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!scheduledTransfers) return null;
@@ -71,7 +73,7 @@ export default function ScheduledTransfers({
                 </div>
               </div>
               <div className="scheduled-transfers__amount">
-                {formatCurrency(-transfer.amount, transfer.currency)}
+                {convertAndFormat(-transfer.amount, transfer.currency)}
               </div>
             </div>
           ))}
@@ -125,7 +127,7 @@ export default function ScheduledTransfers({
                       </div>
                     </div>
                     <div className="scheduled-transfers__amount">
-                      {formatCurrency(-transfer.amount, transfer.currency)}
+                      {convertAndFormat(-transfer.amount, transfer.currency)}
                     </div>
                   </div>
                 ))}

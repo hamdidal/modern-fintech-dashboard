@@ -37,3 +37,5 @@ export type ThemeMode = 'light' | 'dark'
 
 export type Locale = 'en' | 'tr'
 
+export type Currency = 'TRY' | 'USD' | 'EUR' | 'GBP' | 'JPY' | 'INR' | 'RUB' | 'CNY' | 'CHF' | 'CAD' | 'AUD'
+

@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import WalletMinus from '@assets/svgs/WalletMinus'
 import WalletPlus from '@assets/svgs/WalletPlus'
-import { formatCurrency } from '@utils/format'
+import { useCurrency } from '@hooks/useCurrency'
 import type { ChangeMetric } from '@types'
 
 type MetricType = 'balance' | 'expense' | 'savings'
@@ -24,6 +24,7 @@ const MetricCard = ({
   isSelected = false,
   onClick,
 }: MetricCardProps) => {
+  const { convertAndFormat } = useCurrency()
   const cardVariant = isSelected ? 'primary' : 'secondary'
   const iconColor = isSelected ? '#C8EE44' : '#363A3F'
 
@@ -39,7 +40,7 @@ const MetricCard = ({
     }
   }, [type, iconColor])
 
-  const formattedValue = useMemo(() => formatCurrency(value, currency), [value, currency])
+  const formattedValue = useMemo(() => convertAndFormat(value, currency), [value, currency, convertAndFormat])
 
   return (
     <div

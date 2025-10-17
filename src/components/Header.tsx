@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useAuthStore } from "@store/auth.store";
+import { useCurrencyStore } from "@store/currency.store";
 import { useTranslation } from "react-i18next";
+import type { Currency } from "../types/common.types";
 import searchIcon from "@assets/icons/search.png";
 import notificationIcon from "@assets/icons/notification.png";
 import profileIcon from "@assets/profile-pictures/picture.png";
@@ -22,6 +24,7 @@ export default function Header({
 }: HeaderProps) {
   const { t, i18n } = useTranslation();
   const user = useAuthStore((s) => s.user);
+  const { currency, setCurrency } = useCurrencyStore();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -80,6 +83,34 @@ export default function Header({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleLanguageChange = (langCode: string) => {
+    i18n.changeLanguage(langCode);
+  };
+
+  const handleCurrencyChange = (currencyCode: Currency) => {
+    setCurrency(currencyCode);
+  };
+
+  const renderLanguageButton = (langCode: string, labelKey: string) => (
+    <button
+      key={langCode}
+      className={i18n.language === langCode ? "active" : ""}
+      onClick={() => handleLanguageChange(langCode)}
+    >
+      {t(labelKey)}
+    </button>
+  );
+
+  const renderCurrencyButton = (currencyCode: Currency) => (
+    <button
+      key={currencyCode}
+      className={currency === currencyCode ? "active" : ""}
+      onClick={() => handleCurrencyChange(currencyCode)}
+    >
+      {currencyCode}
+    </button>
+  );
 
   return (
     <header className="header">
@@ -240,18 +271,13 @@ export default function Header({
               </button>
               <div className="header__user-menu-divider" />
               <div className="header__user-menu-lang">
-                <button
-                  className={i18n.language === "en" ? "active" : ""}
-                  onClick={() => i18n.changeLanguage("en")}
-                >
-                  {t("app.english")}
-                </button>
-                <button
-                  className={i18n.language === "tr" ? "active" : ""}
-                  onClick={() => i18n.changeLanguage("tr")}
-                >
-                  {t("app.turkish")}
-                </button>
+                {renderLanguageButton("en", "app.english")}
+                {renderLanguageButton("tr", "app.turkish")}
+              </div>
+              <div className="header__user-menu-divider" />
+              <div className="header__user-menu-lang">
+                {renderCurrencyButton("TRY")}
+                {renderCurrencyButton("USD")}
               </div>
             </div>
           )}
