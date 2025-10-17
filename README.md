@@ -1,4 +1,4 @@
-# Maglo - Modern Fintech Dashboard
+# Modern Fintech Dashboard
 
 A modern fintech dashboard application built with React + TypeScript + Vite.
 
