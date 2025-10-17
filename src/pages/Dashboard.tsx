@@ -88,10 +88,7 @@ export default function Dashboard() {
   }
   if (scheduledTransfersError && !scheduledTransfersLoading) {
     toast.error(scheduledTransfersError.message)
-  }
-
-  console.log(import.meta.env.DEV);
-  
+  }  
 
   return (
     <div className="dashboard">
