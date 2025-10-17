@@ -1,0 +1,154 @@
+:root {
+  --auth-bg: rgba(255, 255, 255, 0.9);
+  --google-button-text: #78778B;
+  --text: #1B212D;
+  --sidebar-text-passive: #929EAE;
+}
+
+
+.wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  width: 50%;
+  gap: 25%;
+}
+
+.containerTablet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 25%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-top: 30px;
+  width: 400px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+}
+
+.right {
+  background: 
+    url("../assets/auth-bg.png") no-repeat right center;
+  background-size: contain;
+  height: 100vh;
+  width: 50%;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  gap: 25px;
+}
+
+.form {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+
+  .spacer {
+    height: 12px;
+  }
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--auth-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 8px;
+}
+
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 100%;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  margin: 0;
+  color: var(--google-button-text);
+}
+
+.socialSection {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.googleButtonText {
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 100%;
+  margin: 0;
+  color: var(--google-button-text);
+}
+
+.footerLink {
+  cursor: pointer;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 100%;
+  margin: 0;
+  color: var(--text);
+  gap: 8px;
+
+  .linkLabel {
+    font-weight: 400;
+    color: var(--sidebar-text-passive);
+  }
+
+  .linkText {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
