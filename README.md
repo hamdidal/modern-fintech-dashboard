@@ -1,4 +1,4 @@
-# Maglo - Modern Fintech Dashboard
+# Modern Fintech Dashboard
 
 A modern fintech dashboard application built with React + TypeScript + Vite.
 
@@ -33,7 +33,7 @@ Fill the `.env` file with the following variables:
 
 ```env
 # Backend API base URL
-VITE_API_BASE_URL=https://case.nodelabs.dev/api
+VITE_API_BASE_URL=your-api-url
 
 # Google OAuth Client ID (required for Google sign-in)
 VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id
@@ -106,7 +106,7 @@ yarn test:coverage
 
 | Name | Required | Default | Description |
 |------|----------|---------|-------------|
-| `VITE_API_BASE_URL` | Yes | `https://case.nodelabs.dev/api` | Backend API base URL |
+| `VITE_API_BASE_URL` | Yes | `your-api-url` | Backend API base URL |
 | `VITE_GOOGLE_CLIENT_ID` | Yes (for Google OAuth) | — | Google OAuth Web Client ID |
 
 ## 📁 Project Structure
@@ -291,4 +291,3 @@ export default defineConfig([
   },
 ])
 ```
-# modern-fintech-dashboard
