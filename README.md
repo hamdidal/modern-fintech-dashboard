@@ -159,11 +159,6 @@ The project uses TypeScript path aliases for cleaner and more readable import st
 ### Example Usage
 
 ```typescript
-// ❌ Old way (relative paths)
-import { useAuth } from '../../../hooks/useAuth'
-import { API_ENDPOINTS } from '../../../constants/api.constants'
-
-// ✅ New way (path aliases)
 import { useAuth } from '@hooks/useAuth'
 import { API_ENDPOINTS } from '@constants'
 ```
