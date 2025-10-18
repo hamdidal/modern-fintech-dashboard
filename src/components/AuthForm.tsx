@@ -4,8 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import FormField from "./FormField";
+import styles from "@styles/auth.module.scss";
+import type { FormMode } from "@constants";
 
-const schema = (t: TFunction, mode: "signin" | "signup") => {
+const schema = (t: TFunction, mode: FormMode) => {
   const baseSchema = {
     email: z.string().email(t("validation.email")),
     password:
@@ -39,7 +41,7 @@ type FormValues = {
 };
 
 type Props = {
-  mode: "signin" | "signup";
+  mode: FormMode;
   onSubmit: (values: FormValues) => Promise<void> | void;
   loading?: boolean;
 };
@@ -67,11 +69,7 @@ export default function AuthForm({ mode, onSubmit, loading }: Props) {
 
   return (
     <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-      }}
+      className={styles.authForm}
       onSubmit={handleSubmit(handleFormSubmit)}
       aria-busy={loading}
     >

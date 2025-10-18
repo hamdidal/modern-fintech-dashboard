@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import {
@@ -15,12 +15,14 @@ import WalletCard from '@components/WalletCard'
 import ScheduledTransfers from '@components/ScheduledTransfers'
 import RecentTransaction from '@components/RecentTransaction'
 import { DEFAULT_CURRENCY } from '@constants'
-import type { RecentTransactions, Wallet } from '@types'
+import { isRecentTransactions, isWallet } from '@utils/type-guards'
 import { ErrorBoundaryTest } from '@/components/ErrorBoundaryTest'
+
+import type { MetricType } from '@constants'
 
 export default function Dashboard() {
   const { t } = useTranslation()
-  const [selectedCard, setSelectedCard] = useState<'balance' | 'expense' | 'savings'>('balance')
+  const [selectedCard, setSelectedCard] = useState<MetricType>('balance')
   const [timePeriod, setTimePeriod] = useState('7days')
 
   const {
@@ -33,7 +35,7 @@ export default function Dashboard() {
     data: workingCapitalResponse,
     isLoading: workingCapitalLoading,
     error: workingCapitalError,
-  } = useWorkingCapital(timePeriod)
+  } = useWorkingCapital()
 
   const {
     data: recentTransactionsResponse,
@@ -66,7 +68,7 @@ export default function Dashboard() {
     [summary]
   )
 
-  const handleCardSelect = useCallback((card: 'balance' | 'expense' | 'savings') => {
+  const handleCardSelect = useCallback((card: MetricType) => {
     setSelectedCard(card)
   }, [])
 
@@ -74,21 +76,33 @@ export default function Dashboard() {
     setTimePeriod(period)
   }, [])
 
-  if (summaryError && !summaryLoading) {
-    toast.error(summaryError.message)
-  }
-  if (workingCapitalError && !workingCapitalLoading) {
-    toast.error(workingCapitalError.message)
-  }
-  if (recentTransactionsError && !recentTransactionsLoading) {
-    toast.error(recentTransactionsError.message)
-  }
-  if (walletError && !walletLoading) {
-    toast.error(walletError.message)
-  }
-  if (scheduledTransfersError && !scheduledTransfersLoading) {
-    toast.error(scheduledTransfersError.message)
-  }  
+  useEffect(() => {
+    const errors = [
+      { error: summaryError, loading: summaryLoading, context: 'Financial Summary' },
+      { error: workingCapitalError, loading: workingCapitalLoading, context: 'Working Capital' },
+      { error: recentTransactionsError, loading: recentTransactionsLoading, context: 'Transactions' },
+      { error: walletError, loading: walletLoading, context: 'Wallet' },
+      { error: scheduledTransfersError, loading: scheduledTransfersLoading, context: 'Transfers' },
+    ]
+
+    errors.forEach(({ error, loading, context }) => {
+      if (error && !loading) {
+        console.error(`[${context}]`, error)
+        toast.error(error.message || `Failed to load ${context}`)
+      }
+    })
+  }, [
+    summaryError,
+    summaryLoading,
+    workingCapitalError,
+    workingCapitalLoading,
+    recentTransactionsError,
+    recentTransactionsLoading,
+    walletError,
+    walletLoading,
+    scheduledTransfersError,
+    scheduledTransfersLoading,
+  ])  
 
   return (
     <div className="dashboard">
@@ -156,10 +170,8 @@ export default function Dashboard() {
 
         {recentTransactionsLoading ? (
           <Skeleton height={300} />
-        ) : recentTransactions ? (
-          <RecentTransaction
-            recentTransactions={recentTransactions as RecentTransactions}
-          />
+        ) : recentTransactions && isRecentTransactions(recentTransactions) ? (
+          <RecentTransaction recentTransactions={recentTransactions} />
         ) : (
           <Skeleton height={300} />
         )}
@@ -168,8 +180,8 @@ export default function Dashboard() {
       <div className="dashboard__right">
         {walletLoading ? (
           <Skeleton height={400} />
-        ) : wallet ? (
-          <WalletCard wallet={wallet as Wallet} />
+        ) : wallet && isWallet(wallet) ? (
+          <WalletCard wallet={wallet} />
         ) : (
           <Skeleton height={400} />
         )}

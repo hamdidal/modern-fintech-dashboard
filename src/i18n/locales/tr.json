@@ -81,5 +81,14 @@
     "supportLink": "Destek Al",
     "testButton": "Hata Fırlat (Test)",
     "testErrorMessage": "🧪 Test Hatası: ErrorBoundary düzgün çalışıyor! Bu bir test hatasıdır."
+  },
+  "errors": {
+    "networkError": "Ağ hatası. Lütfen internet bağlantınızı kontrol edin.",
+    "sessionExpired": "Oturumunuzun süresi doldu. Lütfen tekrar giriş yapın.",
+    "forbidden": "Bu işlemi gerçekleştirmek için yetkiniz bulunmuyor.",
+    "notFound": "İstenen kaynak bulunamadı.",
+    "serverError": "Sunucu hatası. Lütfen daha sonra tekrar deneyin.",
+    "serviceUnavailable": "Servis geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
+    "requestFailed": "İstek başarısız oldu. Lütfen tekrar deneyin."
   }
 }

@@ -31,8 +31,6 @@ export type ErrorResponse = {
 
 export type LoadingState = 'idle' | 'loading' | 'success' | 'error'
 
-export type FormMode = 'signin' | 'signup'
-
 export type ThemeMode = 'light' | 'dark'
 
 export type Locale = 'en' | 'tr'

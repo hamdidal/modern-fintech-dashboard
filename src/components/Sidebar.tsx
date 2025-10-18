@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useAuthStore } from "@store/auth.store";
+import { useAuth } from "@hooks/useAuth";
 import { toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 import dashboardIcon from "@assets/icons/dashboard.png";
@@ -18,12 +18,12 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose, isTablet }: SidebarProps) {
   const { t } = useTranslation();
-  const clear = useAuthStore((s) => s.clear);
+  const { logout: logoutAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const logout = () => {
-    clear();
+  const handleLogout = async () => {
+    await logoutAuth();
     toast.success(t("app.signedOut"));
     navigate("/signin");
   };
@@ -82,7 +82,7 @@ export default function Sidebar({ isOpen, onClose, isTablet }: SidebarProps) {
             <span className="sidebar__menu-icon">{<img src={help} alt="Help" />}</span>
             <span className="sidebar__menu-footer-label">{t("app.help")}</span>
           </button>
-          <button className="sidebar__menu-item" onClick={logout}>
+          <button className="sidebar__menu-item" onClick={handleLogout}>
             <span className="sidebar__menu-icon">{<img src={logoutIcon} alt="Logout" />}</span>
             <span className="sidebar__menu-footer-label">{t("app.logout")}</span>
           </button>

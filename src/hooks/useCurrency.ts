@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useCallback } from 'react'
 import currency from 'currency.js'
 import { getExchangeRates } from '@api/exchange'
 import { useCurrencyStore } from '@store/currency.store'
@@ -11,7 +12,6 @@ const CURRENCY_SYMBOL_MAP: Record<string, Currency> = {
   USD: 'USD',
   TRY: 'TRY',
 }
-
 
 const normalizeCurrency = (currencyInput: string): Currency => {
   const normalized = CURRENCY_SYMBOL_MAP[currencyInput]
@@ -29,7 +29,7 @@ export const useCurrency = () => {
     refetchOnWindowFocus: false,
   })
 
-  const convertAndFormat = (
+  const convertAndFormat = useCallback((
     amount: number,
     fromCurrency: string = 'USD',
     options?: currency.Options
@@ -66,7 +66,7 @@ export const useCurrency = () => {
       precision: 2,
       ...options,
     }).format()
-  }
+  }, [selectedCurrency, exchangeRates])
 
   const convert = (amount: number, fromCurrency: string = 'USD'): number => {
     const normalizedFrom = normalizeCurrency(fromCurrency)

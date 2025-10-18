@@ -1,28 +1,23 @@
 import { useAuthStore } from '@store/auth.store'
-import { tokenService } from '@services'
-import type { User } from '@types'
+import { logout as logoutApi } from '@api/auth'
 
 export const useAuth = () => {
-  const { token, user, setAuth, clear } = useAuthStore()
+  const token = useAuthStore((s) => s.token)
+  const clear = useAuthStore((s) => s.clear)
 
-  const login = (token: string, user: User) => {
-    tokenService.setAuth(token, user)
+  const logout = async () => {
+    try {
+      await logoutApi()
+    } catch (error) {
+      console.error('Logout API error:', error)
+    } finally {
+      clear()
+    }
   }
-
-  const logout = () => {
-    tokenService.clearAuth()
-  }
-
-  const isAuthenticated = !!token
 
   return {
-    token,
-    user,
-    isAuthenticated,
-    login,
+    isAuthenticated: !!token,
     logout,
-    setAuth,
-    clear,
   }
 }
 

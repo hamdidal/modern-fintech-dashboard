@@ -19,9 +19,6 @@ class TokenService {
     return !!token
   }
 
-  getCurrentUser(): User | undefined {
-    return useAuthStore.getState().user
-  }
 }
 
 export const tokenService = new TokenService()

@@ -106,25 +106,5 @@ describe('tokenService', () => {
       expect(result).toBe(false)
     })
   })
-
-  describe('getCurrentUser', () => {
-    it('should return user when available', () => {
-      ;(useAuthStore.getState as jest.Mock).mockReturnValue({
-        user: mockUser,
-      })
-
-      const result = tokenService.getCurrentUser()
-      expect(result).toEqual(mockUser)
-    })
-
-    it('should return undefined when user not available', () => {
-      ;(useAuthStore.getState as jest.Mock).mockReturnValue({
-        user: undefined,
-      })
-
-      const result = tokenService.getCurrentUser()
-      expect(result).toBeUndefined()
-    })
-  })
 })
 

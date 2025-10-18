@@ -14,12 +14,9 @@ export const getFinancialSummary = async (): Promise<ApiResponse<FinancialSummar
   return data
 }
 
-export const getWorkingCapital = async (period?: string): Promise<ApiResponse<WorkingCapital>> => {
+export const getWorkingCapital = async (): Promise<ApiResponse<WorkingCapital>> => {
   const { data } = await api.get<ApiResponse<WorkingCapital>>(
     API_ENDPOINTS.FINANCIAL.WORKING_CAPITAL,
-    {
-      params: period ? { period } : undefined,
-    }
   )
   return data
 }

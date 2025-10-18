@@ -53,13 +53,7 @@ export default function WalletCard({ wallet }: { wallet: Wallet }) {
               <span className="wallet-card__bank-name">
                 {card.bank.split(" ")[0]}.
               </span>
-              <span
-                style={{
-                  fontWeight: 500,
-                  fontSize: "12px",
-                }}
-                className="wallet-card__bank-name_last"
-              >
+              <span className="wallet-card__bank-name_last">
                 {card.bank.slice(card.bank.split(" ")[0].length + 1)}
               </span>
             </div>

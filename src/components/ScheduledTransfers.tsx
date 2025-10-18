@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { formatDate } from "@utils/format";
 import { useCurrency } from "@hooks/useCurrency";
 import { getAvatarForTransfer } from "@utils/avatars";
+import { ArrowRightIcon } from "@assets/svgs/ArrowRight";
+import Modal from "./Modal";
 
 export default function ScheduledTransfers({
   scheduledTransfers,
@@ -38,18 +40,7 @@ export default function ScheduledTransfers({
             onClick={handleViewAll}
           >
             {t("app.viewAll")}{" "}
-            <svg
-              width="6"
-              height="10"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.442382 1.5575L3.87738 5L0.442383 8.4425L1.49988 9.5L5.99988 5L1.49988 0.5L0.442382 1.5575Z"
-                fill="#29A073"
-              />
-            </svg>
+            <ArrowRightIcon />
           </button>
         </div>
 
@@ -80,62 +71,38 @@ export default function ScheduledTransfers({
         </div>
       </div>
 
-      {isModalOpen && (
-        <div className="transfers-modal-overlay" onClick={handleCloseModal}>
-          <div className="transfers-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="transfers-modal__header">
-              <h2>{t("app.scheduledTransfers")}</h2>
-              <button
-                className="transfers-modal__close"
-                onClick={handleCloseModal}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M18 6L6 18M6 6L18 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title={t("app.scheduledTransfers")}
+        maxWidth="600px"
+      >
+        <div className="scheduled-transfers__list">
+          {scheduledTransfers.transfers.map((transfer) => (
+            <div key={transfer.id} className="scheduled-transfers__item">
+              <div className="scheduled-transfers__user">
+                <div className="scheduled-transfers__avatar">
+                  <img
+                    src={getAvatarForTransfer(transfer.id)}
+                    alt={transfer.name}
                   />
-                </svg>
-              </button>
-            </div>
-            <div className="transfers-modal__content">
-              <div className="scheduled-transfers__list">
-                {scheduledTransfers.transfers.map((transfer) => (
-                  <div key={transfer.id} className="scheduled-transfers__item">
-                    <div className="scheduled-transfers__user">
-                      <div className="scheduled-transfers__avatar">
-                        <img
-                          src={getAvatarForTransfer(transfer.id)}
-                          alt={transfer.name}
-                        />
-                      </div>
-                      <div className="scheduled-transfers__info">
-                        <div className="scheduled-transfers__name">
-                          {transfer.name}
-                        </div>
-                        <div className="scheduled-transfers__date">
-                          {formatDate(transfer.date)}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="scheduled-transfers__amount">
-                      {convertAndFormat(-transfer.amount, transfer.currency)}
-                    </div>
+                </div>
+                <div className="scheduled-transfers__info">
+                  <div className="scheduled-transfers__name">
+                    {transfer.name}
                   </div>
-                ))}
+                  <div className="scheduled-transfers__date">
+                    {formatDate(transfer.date)}
+                  </div>
+                </div>
+              </div>
+              <div className="scheduled-transfers__amount">
+                {convertAndFormat(-transfer.amount, transfer.currency)}
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      )}
+      </Modal>
     </>
   );
 }

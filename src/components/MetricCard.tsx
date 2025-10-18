@@ -3,8 +3,7 @@ import WalletMinus from '@assets/svgs/WalletMinus'
 import WalletPlus from '@assets/svgs/WalletPlus'
 import { useCurrency } from '@hooks/useCurrency'
 import type { ChangeMetric } from '@types'
-
-type MetricType = 'balance' | 'expense' | 'savings'
+import type { MetricType } from '@constants'
 
 interface MetricCardProps {
   type: MetricType
@@ -42,15 +41,24 @@ const MetricCard = ({
 
   const formattedValue = useMemo(() => convertAndFormat(value, currency), [value, currency, convertAndFormat])
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onClick?.()
+    }
+  }
+
   return (
     <div
       className={`metric-card metric-card--${cardVariant} ${
         isSelected ? 'metric-card--selected' : ''
       }`}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      aria-live="polite"
+      aria-pressed={isSelected}
+      aria-label={`${label}: ${formattedValue}`}
     >
       <div
         className={`metric-card__icon ${isSelected ? 'metric-card__icon--selected' : ''}`}

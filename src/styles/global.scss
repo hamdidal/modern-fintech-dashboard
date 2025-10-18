@@ -1933,6 +1933,276 @@ a {
 }
 
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--modal-overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--bg);
+  border-radius: 16px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px var(--modal-shadow-dark);
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--header-divider);
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--transfers-close-icon-bg);
+    }
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: var(--modal-text-muted);
+
+    &:hover {
+      background-color: var(--header-search-bg);
+      color: var(--transfers-close-icon-bg);
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__content {
+    padding: 24px 32px;
+    overflow-y: auto;
+
+    .recent-transaction__table {
+      table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+          tr {
+            border-bottom: 1px solid var(--header-divider);
+
+            th {
+              text-align: left;
+              padding: 12px 16px;
+              font-size: 14px;
+              font-weight: 600;
+              color: var(--modal-text-muted);
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid var(--header-search-bg);
+            transition: background-color 0.2s;
+
+            &:hover {
+              background-color: var(--popup-bg);
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            td {
+              padding: 16px;
+            }
+          }
+        }
+      }
+
+      .recent-transaction__name-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .recent-transaction__icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .recent-transaction__name-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .recent-transaction__name {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--text) !important;
+      }
+
+      .recent-transaction__business {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--sidebar-text-passive) !important;
+      }
+
+      .recent-transaction__type {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--sidebar-text-passive) !important;
+      }
+
+      .recent-transaction__amount {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text) !important;
+      }
+
+      .recent-transaction__date {
+        font-weight: 500 !important;
+        font-size: 14px;
+        color: var(--sidebar-text-passive) !important;
+      }
+    }
+
+    .scheduled-transfers__list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .scheduled-transfers__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: var(--header-search-bg);
+      }
+    }
+
+    .scheduled-transfers__user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scheduled-transfers__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .scheduled-transfers__info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scheduled-transfers__name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--transfers-close-icon-bg);
+    }
+
+    .scheduled-transfers__date {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--sidebar-text-passive);
+    }
+
+    .scheduled-transfers__amount {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    max-height: 85vh;
+
+    &__header {
+      padding: 20px;
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    &__content {
+      padding: 16px;
+
+      .recent-transaction__table {
+        table {
+          display: block;
+          overflow-x: auto;
+
+          thead th {
+            padding: 10px 12px;
+            font-size: 12px;
+          }
+
+          tbody td {
+            padding: 12px;
+            font-size: 13px;
+          }
+        }
+
+        .recent-transaction__icon {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .transfers-modal {
     width: 95%;

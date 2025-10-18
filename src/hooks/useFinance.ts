@@ -16,10 +16,10 @@ export const useFinancialSummary = () => {
   })
 }
 
-export const useWorkingCapital = (period?: string) => {
+export const useWorkingCapital = () => {
   return useQuery({
-    queryKey: [QUERY_KEYS.WORKING_CAPITAL, period],
-    queryFn: () => getWorkingCapital(period),
+    queryKey: [QUERY_KEYS.WORKING_CAPITAL],
+    queryFn: getWorkingCapital,
   })
 }
 
